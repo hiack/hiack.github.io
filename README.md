@@ -41,22 +41,25 @@
 
 **改文案**：项目卡片的文字都在 `index.html` 的 `<article class="card ...">` 里，一张卡片一块，顺序是 kicker → 标题 → 一句话 → 正文 → 标签 → 按钮。
 
-## 部署到 GitHub Pages
+## 部署与维护（GitHub Pages）
 
-以下是把这个目录发布到 GitHub Pages 的步骤，按顺序执行即可；本仓库不包含任何自动化部署配置。
+站点已经上线，以下是当前状态和维护要点，不需要再走一遍初始化配置。
 
-1. 建仓库（建议 `hiack/tangzhaochu-home` 或直接用 `<用户名>.github.io`），推送本目录内容到默认分支。
-2. 仓库 → Settings → Pages → Source 选 `Deploy from a branch`，分支选默认分支，目录选 `/ (root)`。
-3. 自定义域名：在仓库根目录新建一个内容为 `tangzhaochu.com` 的 `CNAME` 文件（本目录故意没有预置这个文件，等域名确定后再加）。同时在 DNS 处配置：
-   - 顶点域名 `A` 记录 → `185.199.108.153`、`185.199.109.153`、`185.199.110.153`、`185.199.111.153`
-   - 或 `ALIAS`/`ANAME` → `<用户名>.github.io`
-   - `www` 用 `CNAME` → `<用户名>.github.io`
-4. 勾选 Enforce HTTPS（证书签发可能要等几分钟到几十分钟）。
-5. `404.html` 放在根目录，GitHub Pages 会自动用它作为自定义错误页。
+**当前部署**
 
-注意：江小满 Demo 和这个主页是**两个独立的 Pages 站点**，主页里只是链接到它。主页中的江小满 Demo 链接使用根相对路径 `/jiang-xiaoman-web/`，会跟随主页所在域名解析：转移前在 `hiack.github.io` 下指向 `hiack.github.io/jiang-xiaoman-web/`，转移后在 `tangzhaochu.com` 下指向 `tangzhaochu.com/jiang-xiaoman-web/`，不需要再改链接。
+- 发布仓库：公开仓库 `hiack/hiack.github.io`（用户站点仓库），分支 `main`，目录 `/ (root)`，Source 为 `Deploy from a branch`。
+- 推送 `main` 就是发布：branch-published 站点在推送后自行更新，没有单独的构建步骤或 CI。
+- 自定义域名：根目录已有内容为 `tangzhaochu.com` 的 `CNAME` 文件，由 GitHub Pages 自动创建；不要删除或改写它，否则域名会解绑。
+- DNS：顶点域名的四条 `A` 记录已指向 GitHub Pages（`185.199.108.153`、`185.199.109.153`、`185.199.110.153`、`185.199.111.153`），是既有配置，不要重复添加。
+- HTTPS：证书签发仍在外部进行中，尚未确认已强制 HTTPS；签发完成前不要按「HTTPS 已生效」来写文档或做跳转配置。
+- 404：根目录的 `404.html` 由 GitHub Pages 自动用作自定义错误页。
+- 江小满 Demo：该项目站点已移除自己的自定义域名并重新构建，没有自定义域名时按 GitHub Pages 规则挂在用户站点域名下，即 `tangzhaochu.com/jiang-xiaoman-web/`。主页用的是根相对路径 `/jiang-xiaoman-web/`，会跟随主页域名解析，这里不需要改动；两个站点相互独立，主页只做链接。
 
-关于转移后的地址：按 GitHub Pages 的规则，用户站点 `hiack.github.io` 绑定自定义域名 `tangzhaochu.com` 后，没有自己自定义域名的项目站点会改为在 `tangzhaochu.com/<仓库名>` 下提供。因此，在江小满仓库移除它自己的自定义域名、并重新运行 Pages 构建之后，江小满 Demo 的地址是 `tangzhaochu.com/jiang-xiaoman-web/`（旧的 `hiack.github.io/jiang-xiaoman-web/` 可能会重定向到这里）。这一步与主页的域名转移有先后顺序，两者都完成后新地址才生效。
+**日常维护**
+
+- 改内容：编辑本目录文件后提交并推送到 `main`，线上随后更新。
+- 不要给江小满项目仓库重新绑定自定义域名；一旦它有自己的域名，就会脱离用户站点的 `/<仓库名>/` 路径，主页里现有的根相对链接会失效。
+- 域名解析保持现状，只在真的要迁移域名时才改 DNS。
 
 ## 本地查看
 
