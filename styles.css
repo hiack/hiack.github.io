@@ -39,6 +39,10 @@
   --radius-sm: 14px;
   --section-y: clamp(56px, 9vw, 100px);
 
+  /* 顶栏高度：sticky 顶栏在文档流里占掉的高度（min-height 68px + 1px 分隔线）。
+     桌面端每个栏目按「视口高度 − 这个值」占满一屏，锚点落点也由它推算。 */
+  --header-h: 69px;
+
   /* 焦点环：深色区域内会覆盖成亮橘色 */
   --focus-ring: var(--accent);
 }
@@ -53,7 +57,9 @@
 html {
   -webkit-text-size-adjust: 100%;
   scroll-behavior: smooth;
-  scroll-padding-top: 92px;
+  /* 跳转落点：顶栏之下再留一段空隙，标题不会贴在顶栏上。
+     桌面端（≥900px）会把这个空隙收掉，让栏目正好从顶栏下沿开始、占满一屏。 */
+  scroll-padding-top: calc(var(--header-h) + clamp(12px, 3vh, 23px));
 }
 
 body {
@@ -912,11 +918,13 @@ a.btn:hover {
     .reveal {
       animation: reveal-in linear both;
       animation-timeline: view();
-      animation-range: entry 6% cover 26%;
+      /* 动画在「进入视口」阶段就结束：只要元素完整落在一屏里，
+         它一定已经停在最终状态，不会因为位移把底部的按钮顶出屏幕。 */
+      animation-range: entry 2% entry 62%;
     }
 
-    /* 页内锚点跳转时，目标区块直接呈现：避免入场动画的位移影响落点计算 */
-    .reveal:target {
+    /* 页内锚点跳转时，目标栏目内的元素直接呈现：避免入场动画的位移影响落点计算 */
+    :target .reveal {
       animation: none;
     }
   }
@@ -929,13 +937,175 @@ a.btn:hover {
   }
 }
 
+/* 桌面端：一个栏目 = 一屏。
+   每个栏目至少占满「视口高度 − 顶栏高度」，内容在栏目里垂直居中；
+   栏目内的留白和字号跟着视口高度收缩，窗口变矮时整体一起变小，
+   所以点「项目」后，标题、两张卡片和卡片里的按钮能同时落在一屏以内。
+   内容真比一屏高时 min-height 会被撑开，不会有任何东西被裁掉。 */
 @media (min-width: 900px) {
+  /* 桌面端锚点落点 = 顶栏下沿（69px）：栏目顶正好接在 sticky 顶栏下方，
+     配合 min-height 凑满一屏，不会多出 ~22px 的空隙把整栏推下去。 */
+  html {
+    scroll-padding-top: var(--header-h);
+  }
+
   .projects {
     grid-template-columns: minmax(0, 1.32fr) minmax(0, 1fr);
   }
 
+  .hero,
+  .section {
+    display: flex;
+    align-items: center;
+    min-height: calc(100vh - var(--header-h));
+    padding-block: clamp(36px, 6vh, 88px);
+  }
+
+  .hero > .wrap,
+  .section > .wrap {
+    width: 100%;
+  }
+
+  /* 说明区同样占满一屏，不再靠上紧贴项目区 */
+  .section--notes {
+    padding-top: clamp(36px, 6vh, 88px);
+  }
+
+  /* 区块标题 */
+  .section__head {
+    margin-bottom: clamp(16px, 2.8vh, 32px);
+  }
+
+  .kicker,
+  .card__kicker {
+    font-size: clamp(0.72rem, 1.55vh, 0.78rem);
+  }
+
+  .section__title {
+    margin-top: clamp(10px, 1.7vh, 16px);
+    font-size: clamp(1.5rem, 3.4vh, 2.4rem);
+  }
+
+  .section__lead {
+    margin-top: clamp(8px, 1.3vh, 12px);
+    font-size: clamp(0.94rem, 2vh, 1.08rem);
+  }
+
+  /* 项目卡片：内边距、间距、图案高度都随视口高度收缩 */
+  .card {
+    gap: clamp(9px, 1.6vh, 15px);
+    padding: clamp(20px, 3.8vh, 38px);
+  }
+
+  .card__title {
+    font-size: clamp(1.35rem, 3.4vh, 1.9rem);
+  }
+
+  .card__tagline {
+    font-size: clamp(0.9rem, 2vh, 0.98rem);
+  }
+
+  .card__body {
+    font-size: clamp(0.94rem, 2.1vh, 1rem);
+    line-height: 1.8;
+  }
+
+  .chips li {
+    font-size: clamp(0.74rem, 1.7vh, 0.82rem);
+  }
+
+  .card__motif {
+    padding-top: clamp(8px, 1.5vh, 16px);
+  }
+
+  .bars {
+    height: clamp(42px, 8.6vh, 84px);
+  }
+
+  .bubbles {
+    gap: clamp(6px, 1.2vh, 9px);
+  }
+
+  .bubble {
+    height: clamp(12px, 2vh, 16px);
+  }
+
+  .btn {
+    padding: 0.78em 1.32em;
+    font-size: clamp(0.92rem, 2vh, 0.98rem);
+  }
+
+  /* 首屏 */
+  .hero__name {
+    margin-top: clamp(14px, 2.8vh, 28px);
+    font-size: clamp(3.4rem, 15vh, 9rem);
+  }
+
   .hero__lead {
-    margin-top: 34px;
+    margin-top: clamp(16px, 2.8vh, 32px);
+    font-size: clamp(1.05rem, 2.5vh, 1.4rem);
+    line-height: 1.72;
+  }
+
+  .hero__sub {
+    margin-top: clamp(8px, 1.5vh, 14px);
+    font-size: clamp(0.95rem, 1.9vh, 1.05rem);
+  }
+
+  .hero__actions {
+    margin-top: clamp(18px, 3.4vh, 38px);
+  }
+
+  .quick {
+    margin-top: clamp(20px, 4vh, 54px);
+    padding-top: clamp(14px, 2.4vh, 24px);
+  }
+
+  /* 说明区 */
+  .note {
+    padding-block: clamp(18px, 2.8vh, 26px);
+  }
+
+  .note__body {
+    font-size: clamp(0.9rem, 1.9vh, 0.95rem);
+  }
+
+  /* 页脚紧跟在最后一屏之后，不再额外空出一大段 */
+  .site-footer {
+    margin-top: clamp(0px, 2.4vh, 32px);
+  }
+}
+
+/* 窗口特别矮时（笔记本缩放 + 浏览器工具栏再占掉一截）：
+   装饰图案和留白再收一档，字号不再往下压，优先保证可读性。 */
+@media (min-width: 900px) and (max-height: 620px) {
+  .section__head {
+    margin-bottom: 14px;
+  }
+
+  .card {
+    padding-block: 18px;
+    gap: 8px;
+  }
+
+  .card__motif {
+    padding-top: 6px;
+  }
+
+  .bars {
+    height: 40px;
+  }
+
+  .bubbles {
+    gap: 5px;
+  }
+
+  .bubble {
+    height: 11px;
+  }
+
+  .btn {
+    padding: 0.7em 1.2em;
   }
 }
 
@@ -980,6 +1150,14 @@ a.btn:hover {
 
 /* ---------- 16. 打印 ---------- */
 @media print {
+  /* 打印不分屏：取消桌面端的「一栏一屏」高度与居中 */
+  .hero,
+  .section {
+    display: block;
+    min-height: 0;
+    padding-block: 24px;
+  }
+
   .site-header,
   .skip-link,
   .hero__actions,

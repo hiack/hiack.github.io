@@ -41,7 +41,13 @@
 
 **改文案**：项目卡片的文字都在 `index.html` 的 `<article class="card ...">` 里，一张卡片一块，顺序是 kicker → 标题 → 一句话 → 正文 → 标签 → 按钮。
 
-**改页内锚点**：`#projects` / `#notes` 挂在区块标题块 `<header class="section__head">` 上，而不是外层 `<section>`，这样跳转落点就是标题本身；顶栏距离由 `html { scroll-padding-top: 92px }` 统一留出。CSS 里 `.reveal:target` 会跳过入场动画，避免动画位移影响落点计算。
+**改页内锚点**：`#projects` / `#notes` 挂在外层 `<section>` 上，跳转落点是整个栏目的顶部。桌面端（≥900px）由 `@media (min-width: 900px)` 里的 `html { scroll-padding-top: var(--header-h) }` 把落点对齐到 sticky 顶栏下沿（1528×740 时栏目正好是 y69–740 一屏）；手机端仍是 `calc(var(--header-h) + clamp(12px, 3vh, 23px))`，保留 12–23px 的呼吸空隙。CSS 里 `:target .reveal` 会跳过目标栏目的入场动画，避免动画位移影响落点计算。
+
+**改页面节奏（桌面端「一个栏目 = 一屏」）**：`styles.css` 的 `@media (min-width: 900px)` 里，`.hero` 和 `.section` 用 `min-height: calc(100vh - var(--header-h))` 各占满一屏、内容垂直居中；栏目内的字号、留白、卡片图案高度都写成 `clamp(…, Nvh, …)`，窗口变矮时一起收缩，所以点「项目」后标题、两张卡片和卡片里的按钮能同时出现在一屏内。改这些数值时，先确认 `#projects` 一屏还放得下（1528×740 的余量约 100px）。
+
+- `:root` 的 `--header-h: 69px` 是顶栏在文档流里的高度（`.site-header__inner` 的 `min-height: 68px` + 1px 分隔线）。改顶栏高度、或让顶栏在小宽度下换行，就必须同步改它，否则每屏的高度和锚点落点都会偏。
+- 宽度不足 900px（手机、竖屏平板）时这些规则不生效，页面回到普通文档流，一屏放不下就正常滚动；`@media (max-height: 620px)` 是给「矮窗口」再收一档图案和留白的保险。
+- 内容真比一屏高时 `min-height` 会被内容撑开，`display: flex` + `min-height` 不会把内容裁掉（没有用 `height: 100vh`）。
 
 ## 部署与维护（GitHub Pages）
 
@@ -76,6 +82,7 @@ npx --yes serve .
 ## 站点自身的约定
 
 - 不加载任何外部资源：没有 CDN、没有第三方字体、没有远程图片。图形全是内联 SVG 或 CSS。
+- 桌面端（≥900px 宽）一个栏目占满一屏：内容垂直居中，尺寸随视口高度收缩；手机和竖屏平板仍是普通文档流，一屏放不下就滚动。
 - 没有统计脚本、Cookie 和表单。
 - 全键盘可用，`:focus-visible` 焦点环始终可见。
 - 跟随系统 `prefers-reduced-motion`：信号条、气泡浮动、滚动进入动画全部关闭。
