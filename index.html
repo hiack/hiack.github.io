@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Hia · 个人主页 — 健身打卡与江小满对话</title>
+    <meta
+      name="description"
+      content="Hia 的个人主页：一个面向健身新手的训练打卡工具，和一个可以和「江小满」聊天的互动网站。纯静态页面，无追踪、无外部依赖。"
+    />
+    <link rel="canonical" href="https://tangzhaochu.com/" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#f8f3ea" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:url" content="https://tangzhaochu.com/" />
+    <meta property="og:title" content="Hia · 个人主页" />
+    <meta
+      property="og:description"
+      content="两个网站项目的入口：一个面向健身新手的训练打卡工具，一个可以和「江小满」聊天的互动网站。"
+    />
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Hia",
+        "alternateName": "Hia 个人主页",
+        "url": "https://tangzhaochu.com/",
+        "inLanguage": "zh-CN"
+      }
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">跳到主要内容</a>
+
+    <header class="site-header">
+      <div class="wrap site-header__inner">
+        <a class="brand" href="#top">
+          <span class="brand__mark" aria-hidden="true"></span>
+          <span class="brand__text">Hia</span>
+        </a>
+
+        <nav class="nav" aria-label="站点导航">
+          <a href="#projects">项目</a>
+          <a href="#notes">关于</a>
+          <a href="https://github.com/hiack" target="_blank" rel="noopener noreferrer">
+            GitHub<span class="ext" aria-hidden="true">↗</span>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <!-- 首屏 -->
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="wrap hero__inner">
+          <p class="chip">个人主页 · tangzhaochu.com</p>
+
+          <h1 class="hero__name" id="hero-title">
+            Hia<span class="hero__dot" aria-hidden="true">.</span>
+          </h1>
+
+          <p class="hero__lead">
+            两个网站项目：一个面向健身新手的训练打卡工具，一个可以和「江小满」聊天的互动网站。
+          </p>
+          <p class="hero__sub">这个页面是它们的入口，链接都直接指向对应的网站。</p>
+
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#projects">看项目</a>
+            <a class="btn btn--ghost" href="https://github.com/hiack" target="_blank" rel="noopener noreferrer">
+              GitHub 主页<span class="ext" aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div class="quick">
+            <span class="quick__label" aria-hidden="true">直达</span>
+            <ul class="quick__list" role="list">
+              <li>
+                <a href="https://temporary-speedy-koto-kwl44fv.vercel.app/" target="_blank" rel="noopener noreferrer">
+                  健身网站<span class="ext" aria-hidden="true">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="/jiang-xiaoman-web/" target="_blank" rel="noopener noreferrer">
+                  江小满 Demo<span class="ext" aria-hidden="true">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/hiack/jiang-xiaoman-web" target="_blank" rel="noopener noreferrer">
+                  江小满源码<span class="ext" aria-hidden="true">↗</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/hiack" target="_blank" rel="noopener noreferrer">
+                  GitHub<span class="ext" aria-hidden="true">↗</span>
+                </a>
+              </li>
+            </ul>
+            <p class="quick__hint">带 ↗ 的链接会在新标签页打开。</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 项目 -->
+      <section class="section" id="projects" aria-labelledby="projects-title">
+        <div class="wrap">
+          <header class="section__head reveal">
+            <p class="kicker">项目</p>
+            <h2 class="section__title" id="projects-title">两个项目</h2>
+            <p class="section__lead">目前公开的只有这两个，所以这里也只放这两个。</p>
+          </header>
+
+          <div class="projects">
+            <!-- 01 健身：深色信号 / 力量 -->
+            <article class="card card--dark on-dark reveal" aria-labelledby="project-fitness">
+              <p class="card__kicker">项目 01 — 训练</p>
+              <h3 class="card__title" id="project-fitness">hia 健身打卡</h3>
+              <p class="card__tagline">Signal · 每一组，都值得一个完成的声音</p>
+
+              <p class="card__body">
+                面向健身新手的轻量训练打卡工具。向右滑动完成训练，用自己喜欢的声音确认每一次坚持；记录以本地优先（local-first）的方式保存。
+              </p>
+
+              <ul class="chips" role="list">
+                <li>本地优先</li>
+                <li>新手向</li>
+                <li>训练打卡</li>
+              </ul>
+
+              <div class="card__motif">
+                <div class="bars" aria-hidden="true">
+                  <span></span><span></span><span></span><span></span><span></span><span></span>
+                  <span></span><span></span><span></span><span></span><span></span><span></span>
+                </div>
+              </div>
+
+              <div class="card__actions">
+                <a
+                  class="btn btn--primary"
+                  href="https://temporary-speedy-koto-kwl44fv.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  打开网站<span class="ext" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+
+            <!-- 02 江小满：暖色对话 -->
+            <article class="card card--warm reveal" aria-labelledby="project-jiang">
+              <p class="card__kicker">项目 02 — 对话</p>
+              <h3 class="card__title" id="project-jiang">江小满对话网站</h3>
+              <p class="card__tagline">Dialogue · 打开网页，就能开始说话</p>
+
+              <p class="card__body">
+                一个可以和「江小满」聊天的互动网站，故事发生在满糖甜品店。
+              </p>
+
+              <ul class="chips" role="list">
+                <li>互动对话</li>
+                <li>满糖甜品店</li>
+                <li>响应式</li>
+              </ul>
+
+              <div class="card__motif">
+                <div class="bubbles" aria-hidden="true">
+                  <span class="bubble bubble--sm"></span>
+                  <span class="bubble bubble--md"></span>
+                  <span class="bubble bubble--lg"></span>
+                </div>
+              </div>
+
+              <div class="card__actions">
+                <a
+                  class="btn btn--primary"
+                  href="/jiang-xiaoman-web/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  打开 Demo<span class="ext" aria-hidden="true">↗</span>
+                </a>
+                <a
+                  class="btn btn--ghost"
+                  href="https://github.com/hiack/jiang-xiaoman-web"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  查看源码<span class="ext" aria-hidden="true">↗</span>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 关于这个合集 -->
+      <section class="section section--notes" id="notes" aria-labelledby="notes-title">
+        <div class="wrap">
+          <header class="section__head reveal">
+            <p class="kicker">关于</p>
+            <h2 class="section__title" id="notes-title">关于这个合集</h2>
+            <p class="section__lead">这里放的是 Hia 公开的网站项目入口。</p>
+          </header>
+
+          <ol class="notes reveal" role="list">
+            <li class="note">
+              <p class="note__title">两个网站</p>
+              <p class="note__body">一个是面向健身新手的训练打卡网站，一个是和「江小满」聊天的互动网站。</p>
+            </li>
+            <li class="note">
+              <p class="note__title">直接打开</p>
+              <p class="note__body">卡片上的按钮直接指向对应网站；带 ↗ 的链接会在新标签页打开。</p>
+            </li>
+            <li class="note">
+              <p class="note__title">一个静态页面</p>
+              <p class="note__body">这个主页由 HTML、CSS 和一点 JavaScript 组成，不需要登录，也没有表单、统计脚本或 Cookie。</p>
+            </li>
+            <li class="note">
+              <p class="note__title">尽量好上手</p>
+              <p class="note__body">全键盘可操作，焦点始终可见，并跟随系统的「减少动态效果」设置。</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap footer__inner">
+        <div class="footer__brand">
+          <p class="footer__name">Hia<span class="brand__dot" aria-hidden="true"></span></p>
+          <p class="footer__domain">tangzhaochu.com</p>
+        </div>
+
+        <nav class="footer__nav" aria-label="页脚链接">
+          <a href="https://github.com/hiack" target="_blank" rel="noopener noreferrer">
+            GitHub<span class="ext" aria-hidden="true">↗</span>
+          </a>
+          <a href="https://temporary-speedy-koto-kwl44fv.vercel.app/" target="_blank" rel="noopener noreferrer">
+            健身网站<span class="ext" aria-hidden="true">↗</span>
+          </a>
+          <a href="/jiang-xiaoman-web/" target="_blank" rel="noopener noreferrer">
+            江小满 Demo<span class="ext" aria-hidden="true">↗</span>
+          </a>
+          <a href="https://github.com/hiack/jiang-xiaoman-web" target="_blank" rel="noopener noreferrer">
+            江小满源码<span class="ext" aria-hidden="true">↗</span>
+          </a>
+        </nav>
+
+        <p class="footer__meta">© <span id="year">2026</span> Hia · 纯静态页面 · 带 ↗ 的链接会在新标签页打开</p>
+        <p class="footer__top"><a href="#top">回到顶部</a></p>
+      </div>
+    </footer>
+
+    <script src="script.js" defer></script>
+  </body>
+</html>
