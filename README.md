@@ -41,6 +41,8 @@
 
 **改文案**：项目卡片的文字都在 `index.html` 的 `<article class="card ...">` 里，一张卡片一块，顺序是 kicker → 标题 → 一句话 → 正文 → 标签 → 按钮。
 
+**改页内锚点**：`#projects` / `#notes` 挂在区块标题块 `<header class="section__head">` 上，而不是外层 `<section>`，这样跳转落点就是标题本身；顶栏距离由 `html { scroll-padding-top: 92px }` 统一留出。CSS 里 `.reveal:target` 会跳过入场动画，避免动画位移影响落点计算。
+
 ## 部署与维护（GitHub Pages）
 
 站点已经上线，以下是当前状态和维护要点，不需要再走一遍初始化配置。

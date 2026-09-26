@@ -914,6 +914,11 @@ a.btn:hover {
       animation-timeline: view();
       animation-range: entry 6% cover 26%;
     }
+
+    /* 页内锚点跳转时，目标区块直接呈现：避免入场动画的位移影响落点计算 */
+    .reveal:target {
+      animation: none;
+    }
   }
 }
 
