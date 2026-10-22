@@ -1,5 +1,7 @@
 # Hia · 个人主页
 
+2026-10-22：江小满入口统一到自有网站的原生对话，不再跳转外部平台。
+
 `tangzhaochu.com` 的静态作品入口。内容与当前训练项目同步，采用训练网站的暗底、灰绿色强调、细边框和卡片样式。
 
 ## 内容与入口
@@ -9,7 +11,7 @@
 | 练刻 | https://lianke.tangzhaochu.com/ | 开始、继续训练，本机离线记录；登录后云同步 |
 | 训练网站 | https://training.tangzhaochu.com/ | 安排计划、共同训练、查看记录与复盘 |
 | AI 饮食助手 | https://training.tangzhaochu.com/nutrition | 仅供虚构案例体验的饮食搭配原型 |
-| 江小满 | https://udify.app/chat/pNigFJHwFSH5pgcY | 当前公开的角色对话入口 |
+| 江小满 | https://home.tangzhaochu.com/contact#conversation | 当前公开的角色对话入口 |
 | 本机快速记组 | https://home.tangzhaochu.com/workout?template=free | 免注册的独立记组工具，不参与云同步 |
 | 数据与 AI 对话说明 | https://training.tangzhaochu.com/data-info | 统一说明本机记录、同步、公开 AI 对话与反馈渠道 |
 
